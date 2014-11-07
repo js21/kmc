@@ -73,8 +73,6 @@ typedef float	count_t;
 #define KMER_WORDS		((MAX_K + 31) / 32)
 
 #ifdef _DEBUG
-#define A_memcpy	memcpy
-#define A_memset	memset
 #endif
 
 
