@@ -405,7 +405,7 @@ template <unsigned SIZE> void CKmerBinSorter_Impl<CKmer<SIZE>, SIZE>::ExpandKmer
 template <unsigned SIZE> void CKmerBinSorter_Impl<CKmer<SIZE>, SIZE>::FromChildThread(CKmerBinSorter<CKmer<SIZE>, SIZE>& ptr, CKmer<SIZE>* thread_buffer, uint64 size)
 {
 	lock_guard<mutex> lcx(ptr.expander_mtx);
-	A_memcpy(ptr.buffer_input + ptr.input_pos, thread_buffer, size * sizeof(CKmer<SIZE>));
+	memcpy(ptr.buffer_input + ptr.input_pos, thread_buffer, size * sizeof(CKmer<SIZE>));
 	ptr.input_pos += size;
 }
 
