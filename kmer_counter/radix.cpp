@@ -72,7 +72,7 @@ void RadixOMP_uint8(uint32 *SourcePtr, uint32 *DestPtr, const int64 SourceSize, 
 				
 				++privateByteCounter[byteValue];
 			}	
-			A_memcpy(&ByteCounter[myID][0], privateByteCounter, sizeof(privateByteCounter));
+			memcpy(&ByteCounter[myID][0], privateByteCounter, sizeof(privateByteCounter));
 
 			#pragma omp barrier
 
@@ -104,7 +104,7 @@ void RadixOMP_uint8(uint32 *SourcePtr, uint32 *DestPtr, const int64 SourceSize, 
 			for (private_i = 0; private_i < 256; private_i++)
 				ByteCounter[myID][private_i] += globalHisto[private_i];
 
-			A_memcpy(privateByteCounter, &ByteCounter[myID][0], sizeof(privateByteCounter));
+			memcpy(privateByteCounter, &ByteCounter[myID][0], sizeof(privateByteCounter));
 		
 			#pragma omp for schedule(static)
 			for(i = data_offset; i < SourceSize_in_bytes; i = i + rec_size)
@@ -199,7 +199,7 @@ template<typename COUNTER_TYPE, typename INT_TYPE>
 				byteValue = *(reinterpret_cast<const uint8_t*>(&tempSource[i]) + ByteIndex);
 				++privateByteCounter[byteValue];
 			}	
-			A_memcpy(&ByteCounter[myID][0], privateByteCounter, sizeof(privateByteCounter));
+			memcpy(&ByteCounter[myID][0], privateByteCounter, sizeof(privateByteCounter));
 
 			#pragma omp barrier
 
@@ -230,7 +230,7 @@ template<typename COUNTER_TYPE, typename INT_TYPE>
 			for (private_i = 0; private_i < 256; private_i++)
 				ByteCounter[myID][private_i] += globalHisto[private_i];
 
-			A_memcpy(privateByteCounter, &ByteCounter[myID][0], sizeof(privateByteCounter));
+			memcpy(privateByteCounter, &ByteCounter[myID][0], sizeof(privateByteCounter));
 		
 
 			#pragma omp for schedule(static)
@@ -245,7 +245,7 @@ template<typename COUNTER_TYPE, typename INT_TYPE>
 				privateByteCounter[byteValue]++;
 
 				if(index_x == (BUFFER_WIDTH -1))
-					A_memcpy ( &tempDest[privateByteCounter[byteValue] - (BUFFER_WIDTH)], &Buffer[byteValue * BUFFER_WIDTH], BUFFER_WIDTH *sizeof(uint64) );
+					memcpy ( &tempDest[privateByteCounter[byteValue] - (BUFFER_WIDTH)], &Buffer[byteValue * BUFFER_WIDTH], BUFFER_WIDTH *sizeof(uint64) );
 			} //end_for
 
 			INT_TYPE elemInBuffer;
@@ -265,7 +265,7 @@ template<typename COUNTER_TYPE, typename INT_TYPE>
 					elemInBuffer = index_stop - index_start;
 
 				if(elemInBuffer != 0)
-					A_memcpy ( &tempDest[privateByteCounter[private_i] - elemInBuffer], &Buffer[private_i * BUFFER_WIDTH + (privateByteCounter[private_i] - elemInBuffer)%BUFFER_WIDTH], (elemInBuffer)*sizeof(uint64) );
+					memcpy ( &tempDest[privateByteCounter[private_i] - elemInBuffer], &Buffer[private_i * BUFFER_WIDTH + (privateByteCounter[private_i] - elemInBuffer)%BUFFER_WIDTH], (elemInBuffer)*sizeof(uint64) );
 			
 			}
 			#pragma omp barrier
