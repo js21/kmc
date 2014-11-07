@@ -247,7 +247,6 @@ template <typename KMER_T, unsigned SIZE> void CKmerBinSorter<KMER_T, SIZE>::Pro
 	uint64 tmp_n_rec;
 	CMemDiskFile *file;
 	
-	SetMemcpyCacheLimit(8);
 
 	// Process bins
 	while (!bq->completed())

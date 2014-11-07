@@ -16,7 +16,6 @@
 #include <iostream>
 #include <omp.h>
 #include <algorithm>
-#include "libs/asmlib.h"
 #include "defs.h"
 #include "queues.h"
 #include <boost/static_assert.hpp>

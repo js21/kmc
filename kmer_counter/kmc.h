@@ -29,7 +29,6 @@
 #include "kb_storer.h"
 #include "s_mapper.h"
 #include "splitter.h"
-#include "libs/asmlib.h"
 #include <boost/filesystem.hpp>
 
 #ifdef DEVELOP_MODE
@@ -165,7 +164,6 @@ template <typename KMER_T, unsigned SIZE, bool QUAKE_MODE> void CKMC<KMER_T, SIZ
 
 	initialized = true; 
 
-	SetMemcpyCacheLimit(8);			// Sets the asmlib's memcpy function to make copy without use of cache memory
 }
 
 //----------------------------------------------------------------------------------
