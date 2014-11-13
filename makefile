@@ -1,10 +1,10 @@
 all: kmc
 
-BOOST_LIB = /home/vagrant/build/boost_1_55_0/stage/lib
-BOOST_H = /home/vagrant/build/boost_1_55_0
+#BOOST_LIB = /home/vagrant/build/boost_1_55_0/stage/lib
+#BOOST_H = /home/vagrant/build/boost_1_55_0
 
-#BOOST_LIB = /boost/boost_1_55_0/stage/lib
-#BOOST_H = /boost/boost_1_55_0
+BOOST_LIB = /usr/lib/x86_64-linux-gnu
+BOOST_H = /usr/include/boost
 
 KMC_BIN_DIR = bin
 KMC_MAIN_DIR = kmer_counter
